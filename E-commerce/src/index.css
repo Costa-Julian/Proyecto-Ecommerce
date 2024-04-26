@@ -53,6 +53,13 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+.product-card{
+  background-color: green;
+    border: beige;
+    border-color: red;
+    padding: 10px;
+    margin: 10px;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
