@@ -209,7 +209,32 @@ transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   flex-grow: 1; /* El contenido ocupa todo el espacio disponible */
 }
 
-
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+.product-card{
+  background-color: green;
+    border: beige;
+    border-color: red;
+    padding: 10px;
+    margin: 10px;
+}
+>>>>>>> 
 .profile-card {
     max-width: 300px;
     margin: 0 auto;
