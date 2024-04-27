@@ -1,4 +1,6 @@
 import { ItemCarrito } from '../Components/ItemCarrito';
+import React from 'react';
+import { CheckOut } from './CheckOut';
 
 export const CarritoDeCompras = ({ productosEnCarrito, eliminarProducto }) => {
     // Calcular el total del carrito
@@ -10,23 +12,29 @@ export const CarritoDeCompras = ({ productosEnCarrito, eliminarProducto }) => {
         return total;
     };
 
-    // Manejador de evento para eliminar un producto del carrito
+    
     const handleEliminarProducto = (id) => {
-        eliminarProducto(id); // Llama a la función eliminarProducto pasando el id del producto
+        eliminarProducto(id); 
     };
 
     return (
-        <div>
-            <h2>Carrito de Compras</h2>
-            <ul>
-                {productosEnCarrito.map(producto => (
-                    <li key={producto.id}>
-                        <ItemCarrito producto={producto} />
-                        <button onClick={() => handleEliminarProducto(producto.id)}>Eliminar</button>
-                    </li>
-                ))}
-            </ul>
-            <div>Total: ${calcularTotal()}</div>
-        </div>
+        <CheckOut/>
+        // <div className="">
+        //     <div className="">
+        //         <h2 className="">Carrito de Compras</h2>
+        //         <ul className="">
+        //             {productosEnCarrito.map(producto => (
+        //                 <li key={producto.id} className="">
+        //                     <ItemCarrito producto={producto} />
+        //                     <button onClick={() => handleEliminarProducto(producto.id)} className="btn btn-danger">Eliminar</button>
+        //                 </li>
+        //             ))}
+        //         </ul>
+        //         <div className="">Total: ${calcularTotal()}</div>
+        //     </div>
+        // </div>
     );
 };
+
+
+

@@ -1,11 +1,10 @@
-
-import './App.css'
-import Header from './Components/Header'
-import Footer from './Components/Footer'
-import Profile from './Pages/Profile'
-import  { useState } from 'react';
-import {LogoCarrito} from './Components/LogoCarrito'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import Profile from './Pages/Profile';
 import VistaProductos from './Pages/VistaProductos';
+import { CarritoDeCompras } from './Pages/CarritoDeCompras';
 
 const productos = [
     { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
@@ -13,11 +12,9 @@ const productos = [
     { id: 3, nombre: 'Producto 3', precio: 20, cantidad: 1 }
 ];
 
-
-function App() {
+const App = () => {
     const [carrito, setCarrito] = useState([]);
     const [cantidadProductos, setCantidadProductos] = useState(0);
-
 
     const agregarAlCarrito = (producto) => {
         const productoExistente = carrito.find(item => item.id === producto.id);
@@ -43,16 +40,16 @@ function App() {
     };
 
     return (
-        <>
-        <Header/>
-            <LogoCarrito
-                productosEnCarrito={carrito}
-                eliminarProducto={eliminarProducto}
-            />
-            <VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito} />
+        <Router>
+            <Header productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />
+            <Routes>
+                <Route path="/" element={<VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito} />} />
+                <Route path="/carrito" element={<CarritoDeCompras productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />} />
+            </Routes>
             <Footer/>
-        </>
+        </Router>
     );
 };
 
-export default App
+export default App;
+
