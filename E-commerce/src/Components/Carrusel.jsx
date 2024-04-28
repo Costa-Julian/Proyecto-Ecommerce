@@ -1,35 +1,26 @@
 import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { MDBCarousel, MDBCarouselItem, MDBCarouselCaption } from 'mdb-react-ui-kit';
+
 
 const Carousel = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1
-  };
+  
 
   return (
-    <Slider {...settings}>
-      <div>
-        <img src="https://st.depositphotos.com/1706719/1267/i/450/depositphotos_12674494-stock-photo-blue-jeans-isolated-on-white.jpg" alt="Producto 1" />
-      </div>
-      <div>
-        <img src="https://st.depositphotos.com/1706719/1267/i/450/depositphotos_12674494-stock-photo-blue-jeans-isolated-on-white.jpg" alt="Producto 2" />
-      </div>
-      <div>
-        <img src="https://st.depositphotos.com/1706719/1267/i/450/depositphotos_12674494-stock-photo-blue-jeans-isolated-on-white.jpg" alt="Producto 3" />
-      </div>
-      <div>
-        <img src="https://st.depositphotos.com/1706719/1267/i/450/depositphotos_12674494-stock-photo-blue-jeans-isolated-on-white.jpg" alt="Producto 4" />
-      </div>
-      <div>
-        <img src="https://st.depositphotos.com/1706719/1267/i/450/depositphotos_12674494-stock-photo-blue-jeans-isolated-on-white.jpg" alt="Producto 5" />
-      </div>
-    </Slider>
+    <MDBCarousel showIndicators showControls fade>
+      <MDBCarouselItem itemId={1}>
+        <img src='img/hero/hero-1.jpg'  className='d-block w-100' alt='...' />
+      </MDBCarouselItem>
+      <MDBCarouselItem itemId={2}>
+        <img src='img/hero/hero-2.jpg' className='d-block w-100' alt='...' />
+      </MDBCarouselItem>
+      <MDBCarouselItem itemId={3}>
+        <img src='img/hero/hero-1.jpg' className='d-block w-100' alt='...' />
+      </MDBCarouselItem>
+      <MDBCarouselItem itemId={4}>
+        <img src='img/hero/hero-2.jpg' className='d-block w-100' alt='...' />
+      </MDBCarouselItem>
+
+    </MDBCarousel>
   );
 }
 

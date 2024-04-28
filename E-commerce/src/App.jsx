@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import Profile from './Pages/Profile';
 import VistaProductos from './Pages/VistaProductos';
-import { CarritoDeCompras } from './Pages/CarritoDeCompras';
+import { CheckOut } from './Pages/CheckOut';
+import Carousel from './Components/Carrusel'
 
 const productos = [
     { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
@@ -42,9 +42,10 @@ const App = () => {
     return (
         <Router>
             <Header productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />
+            {/* <Carousel/> */}
             <Routes>
                 <Route path="/" element={<VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito} />} />
-                <Route path="/carrito" element={<CarritoDeCompras productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />} />
+                <Route path="/carrito" element={<CheckOut productosEnCarrito={carrito} eliminarProducto={eliminarProducto}/>} />
             </Routes>
             <Footer/>
         </Router>

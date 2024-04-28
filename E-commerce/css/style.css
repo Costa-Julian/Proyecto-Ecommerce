@@ -2395,6 +2395,10 @@ ol {
 	width: 140px;
 }
 
+.cart__close{
+	border: none;
+}
+
 .shopping__cart__table table tbody tr td.cart__close i {
 	font-size: 18px;
 	color: #111111;

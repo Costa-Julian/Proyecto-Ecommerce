@@ -20,7 +20,8 @@ const Header = ({ productosEnCarrito, eliminarProducto }) => {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
-                        <nav className="header__menu mobile-menu">
+                        {/* CODIGO DEL NAV, VA EN COMPONENTE */}
+                        {/* <nav className="header__menu mobile-menu">
                             <ul>
                                 <li><a href="./index.html">Home</a></li>
                                 <li className="active"><a href="./shop.html">Shop</a></li>
@@ -36,7 +37,7 @@ const Header = ({ productosEnCarrito, eliminarProducto }) => {
                                 <li><a href="./blog.html">Blog</a></li>
                                 <li><a href="./contact.html">Contacts</a></li>
                             </ul>
-                        </nav>
+                        </nav> */}
                     </div>
                     <div className="col-lg-3 col-md-3">
                         <div className="header__nav__option" onClick={toggleCarrito}>
