@@ -46,9 +46,9 @@ const App = () => {
             {/* <Carousel/> */}
             <Routes>
                 <Route path="/home" element={ <Carousel/> }></Route>
+                <Route path="/" element={ <Carousel/> }></Route>
                 <Route path="/productos" element={ <VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito}/> }></Route>
                 <Route path="/carrito" element={<CheckOut productosEnCarrito={carrito} eliminarProducto={eliminarProducto}/>} />
-                <Route path="/" element={<VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito} />} />
                 <Route path="/perfil" element={ <Profile /> }></Route>
             </Routes>
             <Footer/>
