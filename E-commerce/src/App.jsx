@@ -5,6 +5,7 @@ import Footer from './Components/Footer';
 import VistaProductos from './Pages/VistaProductos';
 import { CheckOut } from './Pages/CheckOut';
 import Carousel from './Components/Carrusel'
+import Profile from './Pages/Profile'
 
 const productos = [
     { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
@@ -44,8 +45,11 @@ const App = () => {
             <Header productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />
             {/* <Carousel/> */}
             <Routes>
-                <Route path="/" element={<VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito} />} />
+                <Route path="/home" element={ <Carousel/> }></Route>
+                <Route path="/productos" element={ <VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito}/> }></Route>
                 <Route path="/carrito" element={<CheckOut productosEnCarrito={carrito} eliminarProducto={eliminarProducto}/>} />
+                <Route path="/" element={<VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito} />} />
+                <Route path="/perfil" element={ <Profile /> }></Route>
             </Routes>
             <Footer/>
         </Router>

@@ -1,23 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
 return (
 <div>
     <nav className="header__menu mobile-menu">
         <ul>
-            <li><a href="./index.html">Home</a></li>
-            <li className="active"><a href="./shop.html">Shop</a></li>
+            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/productos">Productos</Link></li>
             <li><a href="#">Pages</a>
                 <ul className="dropdown">
-                    <li><a href="./about.html">About Us</a></li>
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
+                    <li><Link to="/carrito">Carrito</Link></li>
+                    <li><Link to="/perfil">Perfil</Link></li>
                 </ul>
             </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contacts</a></li>
         </ul>
     </nav>
 </div>

@@ -21,7 +21,7 @@ const Header = ({ productosEnCarrito, eliminarProducto }) => {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
-                           <Navbar />
+                        <Navbar />
                     </div>
                     <div className="col-lg-3 col-md-3">
                         <div className="header__nav__option" onClick={toggleCarrito}>
