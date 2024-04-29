@@ -1,21 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import VistaProductos from './Pages/VistaProductos';
-import { CheckOut } from './Pages/CheckOut';
+import VistaProductos from './pages/VistaProductos';
+import { CheckOut } from './pages/CheckOut';
 import Carousel from './Components/Carrusel'
-import Profile from './Pages/Profile'
+import Profile from './pages/Profile'
+import ProductDetail from './pages/ProductDetail.jsx';
+import axios from 'axios';
+import { Toaster, toast } from 'sonner'
+// const productos = [
+//     { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
+//     { id: 2, nombre: 'Producto 2', precio: 15, cantidad: 1 },
+//     { id: 3, nombre: 'Producto 3', precio: 20, cantidad: 1 }
+// ];
 
-const productos = [
-    { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
-    { id: 2, nombre: 'Producto 2', precio: 15, cantidad: 1 },
-    { id: 3, nombre: 'Producto 3', precio: 20, cantidad: 1 }
-];
+
 
 const App = () => {
     const [carrito, setCarrito] = useState([]);
     const [cantidadProductos, setCantidadProductos] = useState(0);
+    const [products, setProducts] = useState([]);
+
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('https://fakestoreapi.com/products');
+                setProducts(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
+        fetchProducts();
+    }, [products]);
+
+
 
     const agregarAlCarrito = (producto) => {
         const productoExistente = carrito.find(item => item.id === producto.id);
@@ -28,6 +49,8 @@ const App = () => {
                 return item;
             });
             setCarrito(nuevoCarrito);
+            toast.success('Agregaste un producto al carrito')
+
         } else {
             setCarrito([...carrito, { ...producto, cantidad: 1 }]);
         }
@@ -43,13 +66,16 @@ const App = () => {
     return (
         <Router>
             <Header productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />
+            <Toaster richColors  />
             {/* <Carousel/> */}
             <Routes>
                 <Route path="/home" element={ <Carousel/> }></Route>
                 <Route path="/" element={ <Carousel/> }></Route>
-                <Route path="/productos" element={ <VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito}/> }></Route>
+                <Route path="/productos" element={ <VistaProductos productos={products}  /> }></Route>
                 <Route path="/carrito" element={<CheckOut productosEnCarrito={carrito} eliminarProducto={eliminarProducto}/>} />
                 <Route path="/perfil" element={ <Profile /> }></Route>
+                <Route path="/productos/:id" element={ <ProductDetail agregarAlCarrito={agregarAlCarrito}/> }></Route>
+
             </Routes>
             <Footer/>
         </Router>
