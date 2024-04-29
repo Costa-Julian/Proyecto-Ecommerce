@@ -4,7 +4,8 @@ import './Header.css';
 import {Navbar} from './Navbar'
 import { Link } from 'react-router-dom';
 
-const Header = ({ productosEnCarrito, eliminarProducto }) => {
+
+const Header = ({ productos, setProductosFiltrados, productosEnCarrito, eliminarProducto }) => {
     const [carritoAbierto, setCarritoAbierto] = useState(false);
 
     const toggleCarrito = () => {
@@ -15,15 +16,15 @@ const Header = ({ productosEnCarrito, eliminarProducto }) => {
         <header className="header">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-3 col-md-3">
+                    <div className="col-lg-2 col-md-2">
                         <div className="header__logo">
                             <Link to="/home"><img src="img/logo.png" alt=""/></Link>
                         </div>
                     </div>
-                    <div className="col-lg-6 col-md-6">
-                        <Navbar />
-                    </div>
-                    <div className="col-lg-3 col-md-3">
+                    <div className="col-lg-8 col-md-8">
+                        <Navbar productos={productos} setProductosFiltrados={setProductosFiltrados} />
+                    </div>                    
+                    <div className="col-lg-2 col-md-2">
                         <div className="header__nav__option" onClick={toggleCarrito}>
                         <Link to="/carrito" className="link-to-carrito">
                                 <LogoCarrito

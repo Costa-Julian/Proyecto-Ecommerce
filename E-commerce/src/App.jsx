@@ -16,6 +16,8 @@ const productos = [
 const App = () => {
     const [carrito, setCarrito] = useState([]);
     const [cantidadProductos, setCantidadProductos] = useState(0);
+    const [productosFiltrados, setProductosFiltrados] = useState([]); 
+    const [searchTerm, setSearchTerm] = useState(''); 
 
     const agregarAlCarrito = (producto) => {
         const productoExistente = carrito.find(item => item.id === producto.id);
@@ -42,12 +44,12 @@ const App = () => {
 
     return (
         <Router>
-            <Header productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />
+            <Header productos={productos} setProductosFiltrados={setProductosFiltrados} productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />
             {/* <Carousel/> */}
             <Routes>
                 <Route path="/home" element={ <Carousel/> }></Route>
                 <Route path="/" element={ <Carousel/> }></Route>
-                <Route path="/productos" element={ <VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito}/> }></Route>
+                <Route path="/productos" element={<VistaProductos productos={productosFiltrados.length > 0 ? productosFiltrados : productos} agregarAlCarrito={agregarAlCarrito} />} />
                 <Route path="/carrito" element={<CheckOut productosEnCarrito={carrito} eliminarProducto={eliminarProducto}/>} />
                 <Route path="/perfil" element={ <Profile /> }></Route>
             </Routes>
@@ -57,4 +59,3 @@ const App = () => {
 };
 
 export default App;
-

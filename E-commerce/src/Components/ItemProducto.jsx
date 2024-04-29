@@ -14,4 +14,3 @@ export const ItemProducto = ({ producto, agregarAlCarrito }) => {
         </li>
     );
     };
-
