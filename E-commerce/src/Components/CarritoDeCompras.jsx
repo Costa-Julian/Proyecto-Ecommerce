@@ -1,6 +1,6 @@
 import { ItemCarrito } from './ItemCarrito';
 import React from 'react';
-import { CheckOut } from '../pages/CheckOut';
+import { CheckOut } from '../Pages/CheckOut';
 
 export const CarritoDeCompras = ({ productosEnCarrito, eliminarProducto }) => {
     // Calcular el total del carrito

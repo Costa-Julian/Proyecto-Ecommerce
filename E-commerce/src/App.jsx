@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import VistaProductos from './pages/VistaProductos';
-import { CheckOut } from './pages/CheckOut';
-import Carousel from './Components/Carrusel'
-import Profile from './pages/Profile'
-import ProductDetail from './pages/ProductDetail.jsx';
+import VistaProductos from './Pages/VistaProductos.jsx';
+import { CheckOut } from './Pages/CheckOut.jsx'
+import Carousel from './Components/Carrusel';
+import Profile from './Pages/Profile'
+import ProductDetail from './Pages/ProductDetail.jsx';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner'
 // const productos = [
