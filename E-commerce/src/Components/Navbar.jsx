@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Searchbar from './Searchbar'
 
-export const Navbar = ({ productos, setProductosFiltrados }) => {
+export const Navbar = ({ products, setProductosFiltrados }) => {
     
     return (
     <div>
@@ -16,7 +16,7 @@ export const Navbar = ({ productos, setProductosFiltrados }) => {
                         <li><Link to="/perfil">Perfil</Link></li>
                     </ul>
                 </li>
-                <Searchbar productos={productos} setProductosFiltrados={setProductosFiltrados} />
+                <Searchbar products={products} setProductosFiltrados={setProductosFiltrados} />
             </ul>
         </nav>
     </div>

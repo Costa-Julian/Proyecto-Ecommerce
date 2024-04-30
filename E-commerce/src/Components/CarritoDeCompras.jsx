@@ -19,10 +19,10 @@ export const CarritoDeCompras = ({ productosEnCarrito, eliminarProducto }) => {
 
     return (
         <>
-        <div class="checkout__order">
-            <h4 class="order__title">Your order</h4>
-            <div class="checkout__order__products">  Product <span>Total</span></div>
-            <ul class="checkout__total__products">
+        <div className="checkout__order">
+            <h4 className="order__title">Your order</h4>
+            <div className="checkout__order__products">  Product <span>Total</span></div>
+            <ul className="checkout__total__products">
                 {productosEnCarrito.map(producto => (
                     <div key={producto.id} className="">
                         {/* <button id='boton' onClick={() => handleEliminarProducto(producto.id)} className="cart__close" >x</button> */}
@@ -30,10 +30,10 @@ export const CarritoDeCompras = ({ productosEnCarrito, eliminarProducto }) => {
                     </div>
                 ))}
             </ul>
-            <ul class="checkout__total__all">
+            <ul className="checkout__total__all">
                 <li>Total <span>${calcularTotal()}</span></li>
             </ul>
-            <button type="submit" class="site-btn">PLACE ORDER</button>
+            <button type="submit" className="site-btn">PLACE ORDER</button>
         </div>
         </>
         

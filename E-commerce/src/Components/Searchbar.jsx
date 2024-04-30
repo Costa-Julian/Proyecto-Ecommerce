@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Searchbar = ({ productos, setProductosFiltrados }) => {
+const Searchbar = ({ products, setProductosFiltrados }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleChange = (event) => {
@@ -8,8 +8,8 @@ const Searchbar = ({ productos, setProductosFiltrados }) => {
     };
 
     const handleClick = () => {
-        const filteredProducts = productos.filter(producto =>
-            producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+        const filteredProducts = products.filter(producto =>
+            producto.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setProductosFiltrados(filteredProducts);
     };

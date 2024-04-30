@@ -5,7 +5,7 @@ import {Navbar} from './Navbar'
 import { Link } from 'react-router-dom';
 
 
-const Header = ({ productos, setProductosFiltrados, productosEnCarrito, eliminarProducto }) => {
+const Header = ({ products, setProductosFiltrados, productosEnCarrito, eliminarProducto }) => {
     const [carritoAbierto, setCarritoAbierto] = useState(false);
 
     const toggleCarrito = () => {
@@ -22,7 +22,7 @@ const Header = ({ productos, setProductosFiltrados, productosEnCarrito, eliminar
                         </div>
                     </div>
                     <div className="col-lg-8 col-md-8">
-                        <Navbar productos={productos} setProductosFiltrados={setProductosFiltrados} />
+                        <Navbar products={products} setProductosFiltrados={setProductosFiltrados} />
                     </div>                    
                     <div className="col-lg-2 col-md-2">
                         <div className="header__nav__option" onClick={toggleCarrito}>
