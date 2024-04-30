@@ -36,8 +36,6 @@ export const CarritoDeCompras = ({ productosEnCarrito, eliminarProducto }) => {
             <button type="submit" class="site-btn">PLACE ORDER</button>
         </div>
         </>
-        
-        
     );
 };
 
