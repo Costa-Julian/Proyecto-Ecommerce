@@ -1,20 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import VistaProductos from './Pages/VistaProductos';
-import { CheckOut } from './Pages/CheckOut';
-import Carousel from './Components/Carrusel'
+import VistaProductos from './Pages/VistaProductos.jsx';
+import { CheckOut } from './Pages/CheckOut.jsx'
+import Carousel from './Components/Carrusel';
+import Profile from './Pages/Profile'
+import ProductDetail from './Pages/ProductDetail.jsx';
+import axios from 'axios';
+import { Toaster, toast } from 'sonner'
+import { ListCarrito } from './Pages/ListCarrito.jsx';
+// const productos = [
+//     { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
+//     { id: 2, nombre: 'Producto 2', precio: 15, cantidad: 1 },
+//     { id: 3, nombre: 'Producto 3', precio: 20, cantidad: 1 }
+// ];
 
-const productos = [
-    { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
-    { id: 2, nombre: 'Producto 2', precio: 15, cantidad: 1 },
-    { id: 3, nombre: 'Producto 3', precio: 20, cantidad: 1 }
-];
+
 
 const App = () => {
     const [carrito, setCarrito] = useState([]);
     const [cantidadProductos, setCantidadProductos] = useState(0);
+    const [productosFiltrados, setProductosFiltrados] = useState([]); 
+    const [products, setProducts] = useState([]);
+
+console.log(products);
+
+    useEffect(() => {
+        if (products.length === 0) {
+            const fetchProducts = async () => {
+                try {
+                    const response = await axios.get('https://fakestoreapi.com/products');
+                    setProducts(response.data);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+    
+            fetchProducts();
+        }
+    }, [products]);
 
     const agregarAlCarrito = (producto) => {
         const productoExistente = carrito.find(item => item.id === producto.id);
@@ -27,13 +52,15 @@ const App = () => {
                 return item;
             });
             setCarrito(nuevoCarrito);
+            toast.success('Agregaste un producto al carrito')
+
         } else {
             setCarrito([...carrito, { ...producto, cantidad: 1 }]);
         }
         setCantidadProductos(cantidadProductos + 1);
     };
 
-    const eliminarProducto = (id) => {
+    const eliminarProductoCarrito = (id) => {
         const nuevosProductos = carrito.filter(producto => producto.id !== id);
         setCarrito(nuevosProductos);
         setCantidadProductos(cantidadProductos - 1);
@@ -41,11 +68,16 @@ const App = () => {
 
     return (
         <Router>
-            <Header productosEnCarrito={carrito} eliminarProducto={eliminarProducto} />
+            <Header products={products} setProductosFiltrados={setProductosFiltrados} productosEnCarrito={carrito} eliminarProducto={eliminarProductoCarrito} />
             {/* <Carousel/> */}
             <Routes>
-                <Route path="/" element={<VistaProductos productos={productos} agregarAlCarrito={agregarAlCarrito} />} />
-                <Route path="/carrito" element={<CheckOut productosEnCarrito={carrito} eliminarProducto={eliminarProducto}/>} />
+                <Route path="/home" element={ <Carousel/> }></Route>
+                <Route path="/" element={ <Carousel/> }></Route>
+                <Route path="/productos" element={<VistaProductos products={productosFiltrados.length > 0 ? productosFiltrados : products}  />} />
+                <Route path="/CheckOut" element={<CheckOut totalCompra={carrito.reduce((total, producto) => total + producto.price, 0)}/>} />
+                <Route path="/perfil" element={ <Profile /> }></Route>
+                <Route path="/productos/:id" element={ <ProductDetail agregarAlCarrito={agregarAlCarrito} /> }></Route>
+                <Route path="/Lista_Carrito" element={<ListCarrito productosEnCarrito={carrito} eliminarProducto={eliminarProductoCarrito}/>} />
             </Routes>
             <Footer/>
         </Router>
@@ -53,4 +85,3 @@ const App = () => {
 };
 
 export default App;
-

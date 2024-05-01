@@ -1,7 +1,7 @@
 import React from 'react'
 import { CarritoDeCompras } from '../Components/CarritoDeCompras'
 
-export const CheckOut = ({productosEnCarrito,eliminarProducto}) => {
+export const CheckOut = ({totalCompra}) => {
     return (
     <>
     <section class="breadcrumb-blog set-bg" >
@@ -48,9 +48,13 @@ export const CheckOut = ({productosEnCarrito,eliminarProducto}) => {
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <CarritoDeCompras 
-                                productosEnCarrito={productosEnCarrito}
-                                eliminarProducto={eliminarProducto}/>
+                        <div className="checkout__order">
+                            <h4 className="order__title">Your order</h4>
+                            <ul className="checkout__total__all">
+                                <li>Total <span>${totalCompra}</span></li>
+                            </ul>
+                            <button type="submit" className="site-btn">PLACE ORDER</button>
+                        </div>
                         </div>
                     </div>
                 </form>

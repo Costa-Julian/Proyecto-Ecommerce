@@ -1,8 +1,6 @@
 import  { useState } from 'react';
 import { CarritoDeCompras } from './CarritoDeCompras';
-import { MDBIcon } from 'mdb-react-ui-kit';
-
-import './LogoCarrito.css';
+import {ListCarrito} from '../Pages/ListCarrito'
 
 const calcularCantidadTotal = (productosEnCarrito) => {
     let total = 0;
@@ -30,10 +28,13 @@ export const LogoCarrito = ({ productosEnCarrito, eliminarProducto }) => {
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={handleCarritoClick}>&times;</span>
-                        <CarritoDeCompras
+                        <ListCarrito 
+                            productosEnCarrito={productosEnCarrito}
+                            eliminarProducto={eliminarProducto}/>
+                        {/* <CarritoDeCompras
                             productosEnCarrito={productosEnCarrito}
                             eliminarProducto={eliminarProducto}
-                        />
+                        /> */}
                     </div>
                 </div>
             )}
