@@ -102,5 +102,4 @@ const ProductDetail = ({listaProductos,agregarAlCarrito,eliminar,actualizarProdu
         </div>
     );
 };
-
 export default ProductDetail;
