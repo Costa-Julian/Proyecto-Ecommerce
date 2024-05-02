@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 
 const Searchbar = ({ products, setProductosFiltrados }) => {
-    const [searchTerm, setSearchTerm] = useState('');
+    /* HOOK para la busqueda */ 
+    const [busqueda, setBusqueda] = useState('');
 
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value);
+    const actualizarEstado = (event) => {
+        setBusqueda(event.target.value);
     };
 
-    const handleClick = () => {
+    const filtrarBusqueda = () => {
         const filteredProducts = products.filter(producto =>
-            producto.title.toLowerCase().includes(searchTerm.toLowerCase())
+            producto.title.toLowerCase().includes(busqueda.toLowerCase())
         );
         setProductosFiltrados(filteredProducts);
     };
 
     return (
         <li className="search-bar">
-            <input type="text" placeholder="Buscar..." value={searchTerm} onChange={handleChange} />
-            <button onClick={handleClick}>Buscar</button>
+            <input type="text" placeholder="Buscar..." value={busqueda} onChange={actualizarEstado} />
+            <button onClick={filtrarBusqueda}>Buscar</button>
         </li>
     )
 }
