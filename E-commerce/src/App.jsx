@@ -10,6 +10,7 @@ import ProductDetail from './Pages/ProductDetail.jsx';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner'
 import { ListCarrito } from './Pages/ListCarrito.jsx';
+import { ModificarProducto } from './Pages/ModificarProducto.jsx';
 // const productos = [
 //     { id: 1, nombre: 'Producto 1', precio: 10, cantidad: 1 },
 //     { id: 2, nombre: 'Producto 2', precio: 15, cantidad: 1 },
@@ -23,8 +24,6 @@ const App = () => {
     const [cantidadProductos, setCantidadProductos] = useState(0);
     const [productosFiltrados, setProductosFiltrados] = useState([]); 
     const [products, setProducts] = useState([]);
-
-console.log(products);
 
     useEffect(() => {
         if (products.length === 0) {
@@ -60,11 +59,30 @@ console.log(products);
         setCantidadProductos(cantidadProductos + 1);
     };
 
+    
     const eliminarProductoCarrito = (id) => {
         const nuevosProductos = carrito.filter(producto => producto.id !== id);
         setCarrito(nuevosProductos);
         setCantidadProductos(cantidadProductos - 1);
     };
+
+    const eliminarProducto = (id) =>{
+        const nuevoArray = products.filter(prudocto => prudocto.id !== id)
+        setProducts(nuevoArray)
+    }
+    
+
+    const actualizarProducto = (productoActualizado) => {
+        const productosActualizados = products.map(producto => {
+            if (producto.id === productoActualizado.id) {
+                console.log(producto.id === productoActualizado.id)
+                return productoActualizado;
+            }
+            return producto;
+        });
+        setProducts(productosActualizados);
+    };
+
 
     return (
         <Router>
@@ -76,12 +94,20 @@ console.log(products);
                 <Route path="/productos" element={<VistaProductos products={productosFiltrados.length > 0 ? productosFiltrados : products}  />} />
                 <Route path="/CheckOut" element={<CheckOut totalCompra={carrito.reduce((total, producto) => total + producto.price, 0)}/>} />
                 <Route path="/perfil" element={ <Profile /> }></Route>
-                <Route path="/productos/:id" element={ <ProductDetail agregarAlCarrito={agregarAlCarrito} /> }></Route>
+                <Route path="/productos/:id" element={<ProductDetail listaProductos={products} agregarAlCarrito={agregarAlCarrito} eliminar={eliminarProducto} actualizarProducto={actualizarProducto}/>}></Route>
                 <Route path="/Lista_Carrito" element={<ListCarrito productosEnCarrito={carrito} eliminarProducto={eliminarProductoCarrito}/>} />
+                <Route path="/ModificarProducto/:id" element={ <ModificarProducto productos={products} actualizarProducto={actualizarProducto}/> }></Route>
             </Routes>
             <Footer/>
         </Router>
     );
 };
+
+const convertirArrayAConstante = (array) => {
+    const constante = array;
+    return constante;
+};
+
+
 
 export default App;

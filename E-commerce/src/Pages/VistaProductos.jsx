@@ -31,7 +31,7 @@ const VistaProductos = ({ products ,eliminar}) => {
                                 {products.map(producto => (
                                     <Link  to={{
                                         pathname: `/productos/${producto.id}`,
-                                        state: { eliminar: eliminar }
+                                        state: { producto:producto, eliminar: eliminar }
                                     }} 
                                     key={producto.id} className="col-lg-4 col-md-6 col-sm-6" style={{ width: '100%' }}>
                                         <ItemProducto producto={producto} eliminar={eliminar}  />

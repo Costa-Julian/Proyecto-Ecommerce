@@ -1,26 +1,44 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const ProductDetail = ({agregarAlCarrito}) => {
+
+function buscarProductoPorId(array, idBuscado) {
+    if (array.length === 0) return null;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].id == idBuscado) {
+        return array[i]; 
+        }
+    }
+    return null; 
+}
+
+const ProductDetail = ({listaProductos,agregarAlCarrito,eliminar,actualizarProducto}) => {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
+    // const [product, setProduct] = useState(null);
 
-    useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
-                console.log(response.data);
-                setProduct(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+    // useEffect(() => {
+    //     const getProduct = async () => {
+    //         try {
+    //             const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+    //             console.log(response.data);
+    //             setProduct(response.data);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
 
-        getProduct();
-    }, [id]); 
-    const handleClick = () => {
+    //     getProduct();
+    // }, [id]); 
+
+    const product = buscarProductoPorId(listaProductos,id)
+
+    const handleClickAdd = () => {
         agregarAlCarrito(product);
+    };
+    const handleClickEliminar = () => {
+        eliminar(product.id);
     };
     return (
         <div>
@@ -58,18 +76,22 @@ const ProductDetail = ({agregarAlCarrito}) => {
                                                 <input type="text" value="1" />
                                             </div>
                                         </div>
-                                        <p onClick={handleClick} className="primary-btn">add to cart</p>
+                                        <p onClick={handleClickAdd} className="primary-btn">add to cart</p>
                                     </div>
                                     <div className="product__details__btns__option">
-                                        {/* <a href="#"><i className="fa fa-heart"></i> add to wishlist</a> */}
-                                        <a href=""><i className="fa fa-exchange"></i> Eliminar Producto</a>
+                                        <button className="primary-btn" onClick={handleClickEliminar}>Eliminar</button>
+                                        <Link to=
+                                            {{ pathname: '/ModificarProducto/'+id, 
+                                                state: {product, actualizarProducto} }} >
+                                            <button className="primary-btn">Modificar</button>
+                                        </Link>
+                                        
                                     </div>
                                     <div className="product__details__last__option">
                                         <h5><span>Guaranteed Safe Checkout</span></h5>
                                         <img src="img/shop-details/details-payment.png" alt="" />
                                         <ul>
                                             <li><span>SKU:</span> {product ? product.id : ''}</li>
-                                            {/* Aquí van más detalles del producto */}
                                         </ul>
                                     </div>
                                 </div>
