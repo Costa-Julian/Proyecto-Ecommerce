@@ -68,7 +68,6 @@ const ProductDetail = ({listaProductos,agregarAlCarrito,eliminar,actualizarProdu
                                     <h3>{product ? `$${product.price}` : ''}</h3>
                                     <p>{product ? product.description : ''}</p>
                                     <div className="product__details__option">
-                                        {/* Aquí va el código relacionado con las opciones del producto */}
                                     </div>
                                     <div className="product__details__cart__option">
                                         <div className="quantity">

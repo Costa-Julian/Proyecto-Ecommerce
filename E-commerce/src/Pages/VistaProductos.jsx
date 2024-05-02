@@ -21,9 +21,6 @@ const VistaProductos = ({ products ,eliminar}) => {
                 <div className="row" style={{  padding:0,margin:0 }}>
                     
                     <CategoryList/>
-
-
-                    {/* Product list */}
                     <div className="col-lg-9">
                         <div >
                             

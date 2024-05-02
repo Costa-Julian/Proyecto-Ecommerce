@@ -17,13 +17,12 @@ import Signup from './Pages/Signup.jsx';
 const App = () => {
 
     const [userLogged, setUserLogged] = useState([]);
-      // Array de usuarios y contraseñas predefinidos
-      const [users, setUsers]= useState([
-        { username: 'lucas', password: '123456' },
-        { username: 'francisco', password: 'abcdef' },
-        { username: 'julian', password: 'qwerty' },
-        { username: 'valentin1', password: 'password1' },
-        { username: 'valentin2', password: 'password2' }
+    const [users, setUsers]= useState([
+    { username: 'lucas', password: '123456' },
+    { username: 'francisco', password: 'abcdef' },
+    { username: 'julian', password: 'qwerty' },
+    { username: 'valentin1', password: 'password1' },
+    { username: 'valentin2', password: 'password2' }
     ])
 
 

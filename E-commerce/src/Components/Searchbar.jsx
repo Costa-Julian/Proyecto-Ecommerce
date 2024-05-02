@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-const Searchbar = ({ products, setProductosFiltrados }) => {
-    /* HOOK para la busqueda */ 
+const Searchbar = ({ products, setProductosFiltrados }) => { 
     const [busqueda, setBusqueda] = useState('');
 
     const actualizarEstado = (event) => {
