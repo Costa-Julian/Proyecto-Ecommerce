@@ -13,6 +13,7 @@ import { ListCarrito } from './Pages/ListCarrito.jsx';
 import { ModificarProducto } from './Pages/ModificarProducto.jsx';
 import Login from './Pages/Login.jsx';
 import Signup from './Pages/Signup.jsx';
+import CreateProduct from './Pages/CreateProduct.jsx';
 
 const App = () => {
 
@@ -110,6 +111,7 @@ const App = () => {
                 <Route path="/productos" element={<VistaProductos products={productosFiltrados.length > 0 ? productosFiltrados : products}  />} />
                 <Route path="/CheckOut" element={<CheckOut totalCompra={carrito.reduce((total, producto) => total + producto.price, 0)}/>} />
                 <Route path="/perfil" element={ <Profile /> }></Route>
+                <Route path="/crearProducto" element={ <CreateProduct /> }></Route>
                 <Route path="/productos/:id" element={<ProductDetail listaProductos={products} agregarAlCarrito={agregarAlCarrito} eliminar={eliminarProducto} actualizarProducto={actualizarProducto}/>}></Route>
                 <Route path="/Lista_Carrito" element={<ListCarrito productosEnCarrito={carrito} eliminarProducto={eliminarProductoCarrito}/>} />
                 <Route path="/ModificarProducto/:id" element={ <ModificarProducto productos={products} actualizarProducto={actualizarProducto}/> }></Route>
