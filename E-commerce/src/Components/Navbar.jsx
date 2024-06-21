@@ -12,6 +12,7 @@ export const Navbar = ({ products, setProductosFiltrados }) => {
                 <li><Link to="/productos">Productos</Link></li>
                 <li><a href="#">Pages</a>
                     <ul className="dropdown">
+                        <li><Link to="/crearProducto">Create Product</Link></li>
                         <li><Link to="/CheckOut">CheckOut</Link></li>
                         <li><Link to="/perfil">Perfil</Link></li>
                         <li><Link to="/Lista_Carrito">Carrito</Link></li>
