@@ -2,11 +2,16 @@ import React from 'react';
 import { ItemProducto } from '../Components/ItemProducto';
 import CategoryList from '../Components/CategoryList';
 import { Link } from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
+import { getAllProductos } from '../Services/productService';
 
 const VistaProductos = ({ products ,eliminar}) => {
+    const [productos, setProducto] = useState([]);
+    useEffect(()=>{
+        getAllProductos().then((data) => setProducto(data))
+    },[])
 
-    if(products.length === 0){
+    if(productos?.length === 0){
         return(
         // cambiar loader
         <div style={{minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
@@ -25,7 +30,7 @@ const VistaProductos = ({ products ,eliminar}) => {
                         <div >
                             
                             <div className="row mx-auto">
-                                {products.map(producto => (
+                                {productos?.map(producto => (
                                     <Link  to={{
                                         pathname: `/productos/${producto.id}`,
                                         state: { producto:producto, eliminar: eliminar }
