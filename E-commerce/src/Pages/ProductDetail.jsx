@@ -2,37 +2,16 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
-
-function buscarProductoPorId(array, idBuscado) {
-    if (array.length === 0) return null;
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].id == idBuscado) {
-        return array[i]; 
-        }
-    }
-    return null; 
-}
+import { getProductById } from '../Services/productService';
 
 const ProductDetail = ({listaProductos,agregarAlCarrito,eliminar,actualizarProducto}) => {
     const { id } = useParams();
-    // const [product, setProduct] = useState(null);
 
-    // useEffect(() => {
-    //     const getProduct = async () => {
-    //         try {
-    //             const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
-    //             console.log(response.data);
-    //             setProduct(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
+    const [product, setProducto] = useState([]);
 
-    //     getProduct();
-    // }, [id]); 
-
-    const product = buscarProductoPorId(listaProductos,id)
+    useEffect(()=>{
+        getProductById(id).then((data) => setProducto(data))
+    },[])
 
     const handleClickAdd = () => {
         agregarAlCarrito(product);
@@ -48,7 +27,7 @@ const ProductDetail = ({listaProductos,agregarAlCarrito,eliminar,actualizarProdu
                     <div className="product__details__pic" style={{ flex: '0 0 auto', marginRight: '20px' }}>
                         {product && (
                             <div className="product__details__pic__item">
-                                <img src={product.image} alt={product.title} style={{ width: 'auto', maxHeight: '400px' }} />
+                                <img src="../img/product/product-1.jpg" alt={product.nombre} style={{ width: 'auto', maxHeight: '400px' }} />
                             </div>
                         )}
                     </div>
@@ -65,8 +44,8 @@ const ProductDetail = ({listaProductos,agregarAlCarrito,eliminar,actualizarProdu
                                         <i className="fa fa-star-o"></i>
                                         <span> - 5 Reviews</span>
                                     </div>
-                                    <h3>{product ? `$${product.price}` : ''}</h3>
-                                    <p>{product ? product.description : ''}</p>
+                                    <h3>{product ? `$${product.precio}` : ''}</h3>
+                                    <p>{product ? product.descripcion : ''}</p>
                                     <div className="product__details__option">
                                     </div>
                                     <div className="product__details__cart__option">

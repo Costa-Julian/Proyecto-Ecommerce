@@ -8,8 +8,9 @@ import { getAllProductos } from '../Services/productService';
 
 const VistaProductos = ({ eliminar }) => {
     /* Selector que recibe funcion callback que selecciona a que propiedad del estado global mi componente se quiere suscribir */
-    const products = useSelector ((state) => state.products) 
-    const dispatch = useDispatch();
+    // const products = useSelector ((state) => state.products) 
+    /* Se dispara un evento con el payload del input */
+    // const dispatch = useDispatch();
 
     const [productos, setProducto] = useState([]);
     useEffect(()=>{

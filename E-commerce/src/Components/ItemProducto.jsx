@@ -9,7 +9,8 @@ export const ItemProducto = ({ producto }) => {
                         <li>
                             <a href="#">
                                 <img 
-                                    src={producto.image} 
+                                    //src={producto.image}
+                                    src="../public/vite.svg"
                                     style={{ width: '100%', minHeight: '300px', maxHeight: '100%', objectFit: 'cover' }}  
                                     alt=""
                                 />
