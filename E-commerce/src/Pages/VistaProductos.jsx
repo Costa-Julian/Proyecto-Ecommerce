@@ -3,9 +3,14 @@ import { ItemProducto } from '../Components/ItemProducto';
 import CategoryList from '../Components/CategoryList';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { getAllProductos } from '../Services/productService';
 
-const VistaProductos = ({ products ,eliminar}) => {
+const VistaProductos = ({ eliminar }) => {
+    /* Selector que recibe funcion callback que selecciona a que propiedad del estado global mi componente se quiere suscribir */
+    const products = useSelector ((state) => state.products) 
+    const dispatch = useDispatch();
+
     const [productos, setProducto] = useState([]);
     useEffect(()=>{
         getAllProductos().then((data) => setProducto(data))

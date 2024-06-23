@@ -3,21 +3,21 @@
 // Son vecinos peleados, se crean juntos pero no se comunican
 
 import { createSlice } from '@reduxjs/toolkit'
+import { getAllProductos } from '../Services/productService';
 
 const initialState = {
-    todos: [], /*Este va a ser mi estado global, ya no se guarda en estados locales*/ 
+    products: getAllProductos(), /*Este va a ser mi estado global, ya no se guarda en estados locales*/ 
 };
 
-export const todoSlice = createSlice({
-    name: "todos",
+export const ProductSlice = createSlice({
+    name: "products",
     initialState,
     reducers: {
-        addTodo: (state, action) => {
-            console.log(state);
-            console.log(action);
+        addProduct: (state, action) => {
+         
         }
     }
 })
 
 
-export const {addTodo} = todoSlice.actions /* exporto el reducer, para usarla en el Store */
+// export const { addProduct } = ProductSlice.actions /* exporto el reducer, para usarla en el Store */
