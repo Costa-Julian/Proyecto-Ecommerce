@@ -20,7 +20,7 @@ export const ItemProducto = ({ producto }) => {
                 </div>
 
                 <div className="product__item__text">
-                    <h5 className='no-hover'>{producto.title}</h5>    
+                    <h5 className='no-hover'>{producto.nombre}</h5>    
                     {/* <p className="animacion" onClick={handleClick}>+ Add To Cart</p> */}
 
                     <div className="rating">
@@ -30,7 +30,7 @@ export const ItemProducto = ({ producto }) => {
                         <i className="fa fa-star-o"></i>
                         <i className="fa fa-star-o"></i>
                     </div>
-                    <h5>${producto.price}</h5>
+                    <h5>${producto.precio}</h5>
                     <div className="product__color__select">
                         <label htmlFor="pc-37">
                             <input type="radio" id="pc-37"/>
