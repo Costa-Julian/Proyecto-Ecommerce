@@ -40,21 +40,6 @@ const App = () => {
     const [productosFiltrados, setProductosFiltrados] = useState([]); 
     const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        if (products.length === 0) {
-            const fetchProducts = async () => {
-                try {
-                    const response = await axios.get('https://fakestoreapi.com/products');
-                    setProducts(response.data);
-                } catch (error) {
-                    console.log(error);
-                }
-            };
-    
-            fetchProducts();
-        }
-    }, [products]);
-
     const agregarAlCarrito = (producto) => {
         const productoExistente = carrito.find(item => item.id === producto.id);
 
