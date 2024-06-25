@@ -35,7 +35,7 @@ const ProductDetail = ({listaProductos,agregarAlCarrito,eliminar,actualizarProdu
                         <div className="row d-flex justify-content-center">
                             <div className="col-lg-8">
                                 <div className="product__details__text" style={{ fontSize: '14px' }}>
-                                    <h4>{product ? product.title : ''}</h4>
+                                    <h4>{product ? product.nombre : ''}</h4>
                                     <div className="rating">
                                         <i className="fa fa-star"></i>
                                         <i className="fa fa-star"></i>
