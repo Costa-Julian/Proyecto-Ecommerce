@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../Services/productService';
+import { getProductById, updateProduct } from '../Services/productService';
 import { useNavigate } from 'react-router-dom';
 
 export const ModificarProducto = () => {
@@ -16,8 +16,6 @@ export const ModificarProducto = () => {
     const [categoriaId, setCategoriaId] = useState('');
     const [categoriaNombre, setCategoriaNombre] = useState('');
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         getProductById(id).then(producto => {
             setNombre(producto.nombre);
@@ -29,15 +27,37 @@ export const ModificarProducto = () => {
         });
     }, [id]);
 
+    const categoria = {
+        id: parseInt(categoriaId),
+        nombre: categoriaNombre
+    };
+
+    const navigate = useNavigate();
+
+
     const handleClick = () => {
         const categoria = {
             id: parseInt(categoriaId),
             nombre: categoriaNombre
         };
-        updateProduct(id, nombre, descripcion, precio, stock, categoria).then(() => {
-            navigate("/productos");
-        });
-    }
+
+        updateProduct(id, nombre, descripcion, precio, stock, categoria)
+            .then(() => {
+                // Actualizar el estado del componente si es necesario
+                setNombre(nombre);
+                setDescripcion(descripcion);
+                setPrecio(precio);
+                setStock(stock);
+                setCategoriaId(categoriaId);
+                setCategoriaNombre(categoriaNombre);
+
+                // Navegar a la página de productos después de la actualización
+                navigate("/productos");
+            })
+            .catch(error => {
+                console.error("Error al actualizar el producto:", error);
+            });
+    };
 
     return (
         <div className='container'>

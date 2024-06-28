@@ -66,11 +66,18 @@ export const updateProduct = (id, nombre, descripcion, precio, stock, categoria)
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:4003/producto/update/${id}`, requestOptions)
+    return fetch(`http://localhost:4003/producto/update/${id}`, requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-}
+        .then(result => {
+            console.log(result);
+            return result; // Devolver el resultado para que se pueda encadenar más adelante
+        })
+        .catch(error => {
+            console.log('error', error);
+            throw error; // Lanzar el error para que pueda ser capturado más adelante
+        });
+};
+
 
 
 

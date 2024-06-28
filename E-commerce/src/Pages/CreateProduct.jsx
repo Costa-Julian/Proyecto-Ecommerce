@@ -10,12 +10,11 @@ const CreateProduct = () => {
     const [stock, setStock] = useState('');
     const [categoriaId, setCategoriaId] = useState('');
     const [categoriaNombre, setCategoriaNombre] = useState('');
-    
     const categoria = {
         id: parseInt(categoriaId),
         nombre: categoriaNombre
     }
-
+    
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -74,19 +73,19 @@ const CreateProduct = () => {
                                 name="stock"
                             />
                         </div>
-                         <div className="form-group">
-                            <label className="form-label">ID de Categoría: </label>
+                        <div className="form-group">
+                            <label className="form-label">Categoría ID: </label>
                             <input
                                 value={categoriaId}
                                 onChange={(e) => setCategoriaId(e.target.value)}
                                 className="form-control"
-                                type="number"
+                                type="text"
                                 id="categoriaId"
                                 name="categoriaId"
                             />
                         </div>
                         <div className="form-group">
-                            <label className="form-label">Nombre de Categoría: </label>
+                            <label className="form-label">Categoria Nombre: </label>
                             <input
                                 value={categoriaNombre}
                                 onChange={(e) => setCategoriaNombre(e.target.value)}
